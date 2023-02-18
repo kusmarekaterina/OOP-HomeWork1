@@ -5,9 +5,10 @@ public class Main {
 
     public static void createTransportBook() {
         transports = new Transport []{
-        new Car(null, null, null, null, null, null, null, null, null, null, null, null), new Bus (null, null, null, null, null, null),
-        new Bus (null, null, null, null, null, null),
-        new Bus (null, null, null, null, null, null),
+        new Car (null, null, null),
+        new Bus(null, null, null),
+        new Truck(null, null, null),
+        new Truck (null, null, null),
         };
     }
 
@@ -20,6 +21,5 @@ public class Main {
 
     public static void main(String[] args) {
         printTransportBook();
-
     }
 }

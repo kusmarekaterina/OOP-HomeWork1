@@ -1,46 +1,57 @@
 package transport;
 
-import static transport.ValidateUtils.validateNum;
-import static transport.ValidateUtils.validateString;
+import java.util.Date;
 
-public class Transport {
+import static transport.ValidateUtils.validateString;
+public abstract class Transport {
     protected final String brand;
     protected final String model;
-    protected final Integer year;
-    protected final String country;
-    protected String color;
-    protected Integer maxSpeed;
-    public Transport(String brand,String model, Integer year, String country, String color, Integer maxSpeed) {
-        this.color = validateColor(color);
-        this.country = validateTransportParameters(country);
+    protected Double engineVolume;
+//    protected final Integer year;
+//    protected final String country;
+//    protected String color;
+//    protected Integer maxSpeed;
+    public Transport(String brand,String model, Double engineVolume) {
+//        this.color = validateColor(color);
+//        this.country = validateTransportParameters(country);
         this.brand = validateTransportParameters(brand);
         this.model = validateTransportParameters(model);
-        this.year = validateYear(year);
-        this.maxSpeed = validateTransportParameters(maxSpeed);
+        this.engineVolume = validateEngineVolume(engineVolume);
+//        this.year = validateYear(year);
+//        this.maxSpeed = validateTransportParameters(maxSpeed);
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public String getColor() {
-        return color;
-    }
+//    public String getColor() {
+//        return color;
+//    }
 
     public String getModel() {
         return model;
     }
 
-    public Integer getYear() {
-        return year;
+//    public Integer getYear() {
+//        return year;
+//    }
+
+//    public String getCountry() {
+//        return country;
+//    }
+//
+//    public void setColor(String color) {
+//        this.color = color;
+//    }
+
+
+    public Double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    public void setEngineVolume(Double engineVolume) {
+        this.engineVolume = engineVolume;
     }
 
     @Override
@@ -48,27 +59,40 @@ public class Transport {
         return "Transport{" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
-                ", color='" + color + '\'' +
-                ", maxSpeed=" + maxSpeed +
+                ", engineVolume=" + engineVolume +
                 '}';
     }
+
 
     public static String validateTransportParameters(String value) {
         return validateString(value, "default");
     }
 
-    public static Integer validateTransportParameters(Integer value) {
-        return validateNum(value, 0);
+    public static Double validateEngineVolume(Double value) {
+        return (value == null || value < 0.0 ? 1.5 : value);
     }
 
-    public static String validateColor(String value) {
-        return validateString(value, "Белый");
+    public Date startMoving(){
+        Date date = new Date();
+        return date;
     }
 
-    public static Integer validateYear(Integer value) {
-        return validateNum(value, 2000);
+    public Date finishedMoving(int i){
+        Date date = new Date();
+        return date;
     }
+
+//    public static Integer validateTransportParameters(Integer value) {
+//        return validateNum(value, 0);
+//    }
+//
+//    public static String validateColor(String value) {
+//        return validateString(value, "Белый");
+//    }
+//
+//    public static Integer validateYear(Integer value) {
+//        return validateNum(value, 2000);
+//    }
 
 }
+
