@@ -1,17 +1,45 @@
 package transport;
-public class Car extends Transport {
 
-    public Car (String brand, String model, Double engineVolume) {
-        super (brand, model, engineVolume);
+import driver.DriverB;
+
+public class Car extends Transport<DriverB> {
+
+
+    public Car(String brand, String model, Double engineVolume, DriverB driver) {
+        super(brand, model, engineVolume, driver);
     }
 
     @Override
     public String toString() {
-        return "LightCar{" +
+        return "Car{" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", engineVolume=" + engineVolume +
+                ", driver=" + driver +
                 '}';
+    }
+
+    @Override
+    public void PitStop() {
+        System.out.println("Пит-стоп у автомобиля");
+    }
+
+    @Override
+    public void theBestLapTime() {
+        int minMinute = 100;
+        int maxMinute = 180;
+        int theBestTime = (int)(minMinute + (maxMinute - minMinute) * Math.random());
+
+        System.out.println("Лучшее время круга для автомобиля в минутах" + theBestTime);
+    }
+
+    @Override
+    public void maxSpeed() {
+        int minBound = 70;
+        int maxBound = 120;
+        int maxSpeed = (int)(minBound + (maxBound - minBound) * Math.random());
+
+        System.out.println("Максимальное время для автомобиля " + maxSpeed);
     }
 }
 //

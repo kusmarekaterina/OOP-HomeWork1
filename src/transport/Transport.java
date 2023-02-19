@@ -1,17 +1,20 @@
 package transport;
 
+import driver.Driver;
+
 import java.util.Date;
 
 import static transport.ValidateUtils.validateString;
-public abstract class Transport {
+public abstract class Transport <T extends Driver> implements Competing {
     protected final String brand;
     protected final String model;
     protected Double engineVolume;
+    protected T driver;
 //    protected final Integer year;
 //    protected final String country;
 //    protected String color;
 //    protected Integer maxSpeed;
-    public Transport(String brand,String model, Double engineVolume) {
+    public Transport(String brand,String model, Double engineVolume, T driver) {
 //        this.color = validateColor(color);
 //        this.country = validateTransportParameters(country);
         this.brand = validateTransportParameters(brand);
@@ -19,6 +22,15 @@ public abstract class Transport {
         this.engineVolume = validateEngineVolume(engineVolume);
 //        this.year = validateYear(year);
 //        this.maxSpeed = validateTransportParameters(maxSpeed);
+        setDriver(driver);
+    }
+
+    public T getDriver() {
+        return driver;
+    }
+
+    public void setDriver(T driver) {
+        this.driver = driver;
     }
 
     public String getBrand() {
@@ -60,9 +72,9 @@ public abstract class Transport {
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", engineVolume=" + engineVolume +
+                ", driver=" + driver +
                 '}';
     }
-
 
     public static String validateTransportParameters(String value) {
         return validateString(value, "default");
