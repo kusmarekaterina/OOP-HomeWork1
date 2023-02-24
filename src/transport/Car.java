@@ -4,19 +4,31 @@ import driver.DriverB;
 
 public class Car extends Transport<DriverB> {
 
+    private BodyType bodyType;
 
-    public Car(String brand, String model, Double engineVolume, DriverB driver) {
+
+    public Car(String brand,
+               String model,
+               Double engineVolume,
+               BodyType bodyType,
+               DriverB driver) {
         super(brand, model, engineVolume, driver);
+        this.bodyType = bodyType;
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", driver=" + driver +
+                "brand='" + getBrand() + '\'' +
+                ", model='" + getModel() + '\'' +
+                ", engineVolume=" + getEngineVolume() + ", " + bodyType +
+                ", driver=" + getDriver() + '\'' +
                 '}';
+    }
+
+    @Override
+    public Type printType() {
+        return Type.CAR;
     }
 
     @Override

@@ -4,18 +4,30 @@ import driver.DriverC;
 
 public class Truck extends Transport<DriverC> {
 
-    public Truck(String brand, String model, Double engineVolume, DriverC driver) {
+    private LoadCapacity loadCapacity;
+
+    public Truck(String brand,
+                 String model,
+                 Double engineVolume,
+                 LoadCapacity loadCapacity,
+                 DriverC driver) {
         super(brand, model, engineVolume, driver);
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
     public String toString() {
         return "Truck{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", driver=" + driver +
+                "brand='" + getBrand() + '\'' +
+                ", model='" + getModel() + '\'' +
+                ", engineVolume=" + getEngineVolume() + ", " + loadCapacity +
+                ", driver=" + getDriver() +
                 '}';
+    }
+
+    @Override
+    public Type printType() {
+        return Type.TRUCK;
     }
 
     @Override
