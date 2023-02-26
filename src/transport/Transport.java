@@ -6,10 +6,10 @@ import java.util.Date;
 
 import static transport.ValidateUtils.validateString;
 public abstract class Transport <T extends Driver> implements Competing {
-    protected final String brand;
-    protected final String model;
-    protected Double engineVolume;
-    protected T driver;
+    private final String brand;
+    private final String model;
+    private Double engineVolume;
+    private T driver;
 //    protected final Integer year;
 //    protected final String country;
 //    protected String color;
@@ -93,6 +93,8 @@ public abstract class Transport <T extends Driver> implements Competing {
         Date date = new Date();
         return date;
     }
+
+    public abstract Type printType();
 
 //    public static Integer validateTransportParameters(Integer value) {
 //        return validateNum(value, 0);
