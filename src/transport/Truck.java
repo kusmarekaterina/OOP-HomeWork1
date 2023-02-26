@@ -31,6 +31,11 @@ public class Truck extends Transport<DriverC> {
     }
 
     @Override
+    public void makeDiagnosed() {
+        System.out.println("Пройди диагностику!");
+    }
+
+    @Override
     public void PitStop() {
         System.out.println("Пит-стоп у грузовика");
     }
