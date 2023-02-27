@@ -89,12 +89,16 @@ public abstract class Transport <T extends Driver> implements Competing {
         return date;
     }
 
-    public Date finishedMoving(int i){
+    public Date finishedMoving(){
         Date date = new Date();
         return date;
     }
 
     public abstract Type printType();
+
+    public abstract void makeDiagnosed() throws TransportTypeException;
+
+
 
 //    public static Integer validateTransportParameters(Integer value) {
 //        return validateNum(value, 0);

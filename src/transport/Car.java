@@ -32,6 +32,11 @@ public class Car extends Transport<DriverB> {
     }
 
     @Override
+    public void makeDiagnosed() {
+        System.out.println("Пройди диагностику!");
+    }
+
+    @Override
     public void PitStop() {
         System.out.println("Пит-стоп у автомобиля");
     }
@@ -53,6 +58,7 @@ public class Car extends Transport<DriverB> {
 
         System.out.println("Максимальное время для автомобиля " + maxSpeed);
     }
+
 }
 //
 //import java.util.Calendar;
