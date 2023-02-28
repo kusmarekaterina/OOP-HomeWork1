@@ -26,7 +26,6 @@ public enum Size {
     public static Size getValue (int value) {
         for (Size i : Size.values()){
             if (value >= i.getMin() && value <= i.getMax()) {
-                System.out.println(i);
                 return i;
             }
         }

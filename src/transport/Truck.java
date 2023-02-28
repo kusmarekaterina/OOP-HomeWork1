@@ -2,22 +2,29 @@ package transport;
 
 import driver.DriverC;
 
+import java.util.List;
+
 public class Truck extends Transport<DriverC> {
 
     private LoadCapacity loadCapacity;
+    public static int counter = 0;
+    private int id;
+
 
     public Truck(String brand,
                  String model,
                  Double engineVolume,
                  LoadCapacity loadCapacity,
-                 DriverC driver) {
-        super(brand, model, engineVolume, driver);
+                 DriverC driver,
+                 List<Mechanic> mechanics) {
+        super(brand, model, engineVolume, driver, mechanics);
         this.loadCapacity = loadCapacity;
+        id = counter++;
     }
 
     @Override
     public String toString() {
-        return "Truck{" +
+        return "Truck " + id + " {"  +
                 "brand='" + getBrand() + '\'' +
                 ", model='" + getModel() + '\'' +
                 ", engineVolume=" + getEngineVolume() + ", " + loadCapacity +
