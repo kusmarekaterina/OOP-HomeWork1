@@ -5,6 +5,8 @@ import driver.DriverD;
 public class Bus extends Transport<DriverD> {
 
     private Size size;
+    public static int counter = 0;
+    private int id;
 
 //    public Bus(String brand,String model, Integer year, String country, String color, Integer maxSpeed) {
 //        super(brand, model, year, country, color, maxSpeed);
@@ -26,16 +28,16 @@ public class Bus extends Transport<DriverD> {
     public Bus(String brand,
                String model,
                Double engineVolume,
-               Size size,
-               DriverD driver) {
+               DriverD driver,
+               Size size) {
         super(brand, model, engineVolume, driver);
         this.size = size;
+        id = counter++;
     }
-
 
     @Override
     public String toString() {
-        return "Bus{" +
+        return "Bus " + id + " {" +
                 "brand='" + getBrand() + '\'' +
                 ", model='" + getModel() + '\'' +
                 ", engineVolume=" + getEngineVolume() + ", " + size +
