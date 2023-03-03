@@ -34,8 +34,9 @@ public class Main {
         Mechanic mechanic1 = mechanics.get(0);
         Mechanic mechanic2 = mechanics.get(2);
 
+        DriverB driverB = null;
         for (int i = 1; i <= 4; i++) {
-            DriverB driverB = new DriverB(fullName, true, 10 + i);
+            driverB = new DriverB(fullName, true, 10 + i);
             Car car = new Car(null, null, null, VAN, driverB, List.of(mechanic1, mechanic2));
 //            System.out.println(transport);
             car.makeDiagnosed();
@@ -44,8 +45,9 @@ public class Main {
             transports.add(car);
         }
 
+        DriverC driverC = null;
         for (int i = 1; i <= 4; i++) {
-            DriverC driverC = new DriverC(fullName, true, 10 + i);
+            driverC = new DriverC(fullName, true, 10 + i);
             Truck truck = new Truck(null, null, null, LoadCapacity.getValue(120), driverC, List.of(mechanic1, mechanic2));
 //            System.out.println(transport);
             truck.makeDiagnosed();
@@ -78,8 +80,9 @@ public class Main {
         String list = getTheMechanicsAtTransport(auto);
         System.out.println(list);
 
+
         Map<Transport, List<Mechanic>> map = new HashMap<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i=0; i<8; i++) {
             map.put(transports.get(i), List.of(mechanic1, mechanic2));
         }
         for (Map.Entry<Transport, List<Mechanic>> contact : map.entrySet()) {

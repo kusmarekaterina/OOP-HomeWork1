@@ -4,6 +4,7 @@ import driver.Driver;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import static transport.ValidateUtils.validateString;
 public abstract class Transport <T extends Driver> implements Competing {
@@ -92,6 +93,19 @@ public abstract class Transport <T extends Driver> implements Competing {
                 ", engineVolume=" + engineVolume +
                 ", driver=" + driver +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport<?> transport = (Transport<?>) o;
+        return Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(engineVolume, transport.engineVolume) && Objects.equals(driver, transport.driver) && Objects.equals(mechanics, transport.mechanics);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, driver, mechanics);
     }
 
     public static String validateTransportParameters(String value) {
