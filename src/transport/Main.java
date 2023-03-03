@@ -6,7 +6,9 @@ import driver.DriverC;
 import driver.DriverD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static transport.BodyType.VAN;
 import static transport.Transport.getTheMechanicsAtTransport;
@@ -54,7 +56,7 @@ public class Main {
 
         for (int i = 1; i <= 4; i++) {
             DriverD driverD = new DriverD(fullName, true, 10 + i);
-            Bus bus = new Bus(null, null, null, driverD,Size.getValue(10));
+            Bus bus = new Bus(null, null, null, driverD, Size.getValue(10));
             transports.add(bus);
 //            System.out.println(transport);
             try {
@@ -62,18 +64,27 @@ public class Main {
                 queue.addTransportToQueue(bus);
                 queue.carryOutAnInspection(bus);
             } catch (TransportTypeException e) {
-                System.out.println(e.getMessage());;
+                System.out.println(e.getMessage());
+                ;
             }
         }
 
         Transport auto = transports.get(0);
         mechanics.get(0).carryOutMaintenance(auto);
         mechanics.get(0).fixTheTransport(auto);
-        String name = getTheNameOfTheDrive (auto);
+        String name = getTheNameOfTheDrive(auto);
         System.out.println(name);
 
-        String list = getTheMechanicsAtTransport (auto);
+        String list = getTheMechanicsAtTransport(auto);
         System.out.println(list);
+
+        Map<Transport, List<Mechanic>> map = new HashMap<>();
+        for (int i = 0; i < 8; i++) {
+            map.put(transports.get(i), List.of(mechanic1, mechanic2));
+        }
+        for (Map.Entry<Transport, List<Mechanic>> contact : map.entrySet()) {
+            System.out.println("Автомобиль: " + contact.getKey() + " Механики: " + contact.getValue());
+        }
     }
 
 }
