@@ -5,10 +5,7 @@ import driver.DriverB;
 import driver.DriverC;
 import driver.DriverD;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static transport.BodyType.VAN;
 import static transport.Transport.getTheMechanicsAtTransport;
@@ -19,24 +16,33 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Driver.FullName fullName = new Driver.FullName("Ivanov", "Ivan", "Ivanovich");
+
         List<Transport> transports = new ArrayList<>();
 
         ServiceStation queue = new ServiceStation();
 
         List<Mechanic> mechanics = new ArrayList<>();
 
+        List<Driver> drivers = Arrays.asList(
+                new DriverB (fullName, true, 10),
+                new DriverC (fullName, true, 11),
+                new DriverD (fullName, true, 15),
+                new DriverB (fullName, true, 16),
+                new DriverB (fullName, true, 16));
+
+
         for (int i = 1; i <= 4; i++) {
             Mechanic mechanic = new Mechanic("Иванов", "Иван", "skypro");
             mechanics.add(mechanic);
         }
 
-        Driver.FullName fullName = new Driver.FullName("Ivanov", "Ivan", "Ivanovich");
+
         Mechanic mechanic1 = mechanics.get(0);
         Mechanic mechanic2 = mechanics.get(2);
 
-        DriverB driverB = null;
+        DriverB driverB = (DriverB) drivers.get(0);
         for (int i = 1; i <= 4; i++) {
-            driverB = new DriverB(fullName, true, 10 + i);
             Car car = new Car(null, null, null, VAN, driverB, List.of(mechanic1, mechanic2));
 //            System.out.println(transport);
             car.makeDiagnosed();
@@ -45,9 +51,8 @@ public class Main {
             transports.add(car);
         }
 
-        DriverC driverC = null;
+        DriverC driverC = (DriverC) drivers.get(1);
         for (int i = 1; i <= 4; i++) {
-            driverC = new DriverC(fullName, true, 10 + i);
             Truck truck = new Truck(null, null, null, LoadCapacity.getValue(120), driverC, List.of(mechanic1, mechanic2));
 //            System.out.println(transport);
             truck.makeDiagnosed();
@@ -56,8 +61,8 @@ public class Main {
             transports.add(truck);
         }
 
+        DriverD driverD = (DriverD) drivers.get(2);
         for (int i = 1; i <= 4; i++) {
-            DriverD driverD = new DriverD(fullName, true, 10 + i);
             Bus bus = new Bus(null, null, null, driverD, Size.getValue(10));
             transports.add(bus);
 //            System.out.println(transport);
@@ -67,7 +72,6 @@ public class Main {
                 queue.carryOutAnInspection(bus);
             } catch (TransportTypeException e) {
                 System.out.println(e.getMessage());
-                ;
             }
         }
 
@@ -88,6 +92,15 @@ public class Main {
         for (Map.Entry<Transport, List<Mechanic>> contact : map.entrySet()) {
             System.out.println("Автомобиль: " + contact.getKey() + " Механики: " + contact.getValue());
         }
+
+        Set<Driver> driverSet = new HashSet<>(drivers);
+
+        Iterator <Driver> iterator = driverSet.iterator();
+
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
     }
 
 }
