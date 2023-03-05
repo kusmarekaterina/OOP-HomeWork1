@@ -1,5 +1,7 @@
 package driver;
 
+import java.util.Objects;
+
 public abstract class Driver {
 
     private FullName fullName;
@@ -43,6 +45,19 @@ public abstract class Driver {
                 " , лицензия - " + getDrivingLicence() +
                 " , стаж работы - " + getWorkExperienceInYears() +
                 "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return drivingLicence == driver.drivingLicence && workExperienceInYears == driver.workExperienceInYears && Objects.equals(fullName, driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, drivingLicence, workExperienceInYears);
     }
 
     public abstract void startMove();
